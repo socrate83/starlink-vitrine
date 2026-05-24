@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Starlink : internet haut débit partout — camping-car, van, habitation. Installation simple, application tout-en-un." />
+  <title>Starlink — Internet partout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,400;0,9..40,500;0,9..40,600;0,9..40,700;1,9..40,400&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #0a0e14;
+      --surface: #121820;
+      --surface-2: #1a222d;
+      --text: #e8edf4;
+      --muted: #8b9aad;
+      --accent: #3d9cf5;
+      --accent-hover: #5aadff;
+      --star: #f0c14b;
+      --radius: 14px;
+      --max: 1100px;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: "DM Sans", system-ui, sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { color: var(--accent-hover); }
+
+    .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.5rem; }
+
+    /* Header */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(10, 14, 20, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 1rem 1.5rem;
+      max-width: var(--max);
+      margin: 0 auto;
+    }
+
+    .logo {
+      font-weight: 700;
+      font-size: 1.15rem;
+      letter-spacing: -0.02em;
+      color: var(--text);
+    }
+
+    .logo span { color: var(--accent); }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+      padding: 0.75rem 1.35rem;
+      border-radius: 999px;
+      font-weight: 600;
+      font-size: 0.95rem;
+      border: none;
+      cursor: pointer;
+      transition: transform 0.15s, background 0.2s, box-shadow 0.2s;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, #2d7dd2, #3d9cf5);
+      color: #fff;
+      box-shadow: 0 4px 24px rgba(61, 156, 245, 0.35);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 28px rgba(61, 156, 245, 0.45);
+      color: #fff;
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+    }
+
+    .btn-outline:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+
+    /* Hero */
+    .hero {
+      position: relative;
+      padding: 4rem 0 5rem;
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: -40% -20% auto;
+      height: 80%;
+      background: radial-gradient(ellipse at 50% 0%, rgba(61, 156, 245, 0.18), transparent 65%);
+      pointer-events: none;
+    }
+
+    .hero-grid {
+      display: grid;
+      gap: 2.5rem;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .hero-grid { grid-template-columns: 1fr 1fr; }
+      .hero { padding: 5rem 0 6rem; }
+    }
+
+    .badge {
+      display: inline-block;
+      padding: 0.35rem 0.85rem;
+      border-radius: 999px;
+      background: rgba(61, 156, 245, 0.15);
+      color: var(--accent);
+      font-size: 0.8rem;
+      font-weight: 600;
+      margin-bottom: 1rem;
+      letter-spacing: 0.03em;
+      text-transform: uppercase;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 5vw, 2.85rem);
+      font-weight: 700;
+      line-height: 1.15;
+      letter-spacing: -0.03em;
+      margin-bottom: 1rem;
+    }
+
+    .hero-lead {
+      font-size: 1.125rem;
+      color: var(--muted);
+      margin-bottom: 1.75rem;
+      max-width: 32rem;
+    }
+
+    .hero-cta { display: flex; flex-wrap: wrap; gap: 0.75rem; }
+
+    .hero-visual {
+      position: relative;
+      border-radius: var(--radius);
+      overflow: hidden;
+      aspect-ratio: 4/3;
+      box-shadow: 0 24px 64px rgba(0, 0, 0, 0.5);
+    }
+
+    .hero-visual img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .hero-visual figcaption {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 1rem 1.25rem;
+      background: linear-gradient(transparent, rgba(0, 0, 0, 0.75));
+      font-size: 0.85rem;
+      color: rgba(255, 255, 255, 0.85);
+    }
+
+    /* Sections */
+    section { padding: 4rem 0; }
+
+    section h2 {
+      font-size: clamp(1.5rem, 3vw, 2rem);
+      font-weight: 700;
+      letter-spacing: -0.02em;
+      margin-bottom: 0.5rem;
+      text-align: center;
+    }
+
+    .section-sub {
+      text-align: center;
+      color: var(--muted);
+      max-width: 36rem;
+      margin: 0 auto 2.5rem;
+    }
+
+    /* Cards */
+    .cards {
+      display: grid;
+      gap: 1.25rem;
+    }
+
+    @media (min-width: 700px) {
+      .cards { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .card {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+
+    .card:hover { border-color: rgba(61, 156, 245, 0.3); }
+
+    .card-icon {
+      width: 2.5rem;
+      height: 2.5rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+    }
+
+    .card h3 {
+      font-size: 1.1rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .card p { color: var(--muted); font-size: 0.95rem; }
+
+    /* Use cases */
+    .use-cases {
+      background: var(--surface);
+      border-block: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .use-grid {
+      display: grid;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .use-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+
+    .use-item {
+      border-radius: var(--radius);
+      overflow: hidden;
+      background: var(--surface-2);
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .use-item img {
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+    }
+
+    .use-item div { padding: 1.25rem; }
+
+    .use-item h3 { font-size: 1.05rem; margin-bottom: 0.4rem; }
+    .use-item p { color: var(--muted); font-size: 0.9rem; }
+
+    /* App block */
+    .app-block {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .app-block { grid-template-columns: 1fr 1fr; }
+    }
+
+    .app-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 0.85rem;
+    }
+
+    .app-list li {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      padding: 0.85rem 1rem;
+      background: var(--surface);
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .app-list li::before {
+      content: "✓";
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: rgba(61, 156, 245, 0.2);
+      color: var(--accent);
+      border-radius: 50%;
+      font-size: 0.75rem;
+      font-weight: 700;
+    }
+
+    .app-visual {
+      border-radius: var(--radius);
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+    }
+
+    .app-visual img { width: 100%; display: block; }
+
+    /* Steps */
+    .steps {
+      display: grid;
+      gap: 1rem;
+      counter-reset: step;
+    }
+
+    @media (min-width: 700px) {
+      .steps { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .step {
+      counter-increment: step;
+      padding: 1.25rem;
+      background: var(--surface);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      position: relative;
+      padding-top: 2.5rem;
+    }
+
+    .step::before {
+      content: counter(step);
+      position: absolute;
+      top: 1rem;
+      left: 1.25rem;
+      font-weight: 700;
+      font-size: 1.5rem;
+      color: var(--accent);
+      opacity: 0.9;
+    }
+
+    .step h3 { font-size: 1rem; margin-bottom: 0.35rem; }
+    .step p { color: var(--muted); font-size: 0.88rem; }
+
+    /* CTA band */
+    .cta-band {
+      text-align: center;
+      padding: 3.5rem 1.5rem;
+      margin: 2rem 0 0;
+      background: linear-gradient(160deg, var(--surface-2), var(--surface));
+      border-radius: var(--radius);
+      border: 1px solid rgba(61, 156, 245, 0.2);
+    }
+
+    .cta-band h2 { margin-bottom: 0.75rem; }
+    .cta-band p { color: var(--muted); margin-bottom: 1.5rem; max-width: 28rem; margin-inline: auto; }
+
+    /* Footer */
+    footer {
+      padding: 2rem 0 3rem;
+      border-top: 1px solid rgba(255, 255, 255, 0.06);
+      margin-top: 3rem;
+    }
+
+    .footer-inner {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: center;
+      text-align: center;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .disclaimer { max-width: 40rem; line-height: 1.5; }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="header-inner">
+      <a href="#" class="logo">Internet <span>partout</span></a>
+      <a class="btn btn-primary" href="https://starlink.com/residential?referral=RC-DF-11577924-53788-13" target="_blank" rel="noopener noreferrer">Commander Starlink</a>
+    </div>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div>
+          <span class="badge">Connexion satellite</span>
+          <h1>Internet haut débit, même là où la fibre n’existe pas</h1>
+          <p class="hero-lead">
+            Starlink apporte une connexion fiable en zone rurale, sur la route ou à la maison.
+            Idéal pour le camping-car, le van aménagé et l’habitation — une solution simple pour rester connecté partout.
+          </p>
+          <div class="hero-cta">
+            <a class="btn btn-primary" href="https://starlink.com/residential?referral=RC-DF-11577924-53788-13" target="_blank" rel="noopener noreferrer">Découvrir Starlink</a>
+            <a class="btn btn-outline" href="#installation">Installation facile</a>
+          </div>
+        </div>
+        <figure class="hero-visual">
+          <img
+            src="https://images.unsplash.com/photo-1446776811953-b23d57bd2aaa?w=900&q=80"
+            alt="Vue de la Terre depuis l'espace, évoquant la couverture satellite mondiale"
+            width="900"
+            height="675"
+            loading="eager"
+          />
+          <figcaption>Couverture mondiale — restez en ligne hors des réseaux classiques</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <h2>Pourquoi Starlink ?</h2>
+        <p class="section-sub">Une alternative concrète lorsqu’il n’y a pas de box, de 4G stable ou de fibre disponible sur place.</p>
+        <div class="cards">
+          <article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>
+            </svg>
+            <h3>Partout, vraiment</h3>
+            <p>Zones blanches, campings, chemins de traverse : le réseau satellite couvre les endroits où l’ADSL ou la fibre ne passent pas.</p>
+          </article>
+          <article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
+            </svg>
+            <h3>Débit adapté au quotidien</h3>
+            <p>Télétravail, streaming, cartes GPS en ligne, visioconférences — une connexion pensée pour un usage moderne.</p>
+          </article>
+          <article class="card">
+            <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+              <rect x="3" y="3" width="18" height="18" rx="2"/><path d="M9 9h6v6H9z"/>
+            </svg>
+            <h3>Tout dans une app</h3>
+            <p>Compte, abonnement, suivi de consommation, assistance et réglages d’installation regroupés dans l’application Starlink.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="use-cases">
+      <div class="wrap">
+        <h2>Pensé pour votre mode de vie</h2>
+        <p class="section-sub">Installation pensée pour être rapide — que vous soyez sédentaire ou nomade.</p>
+        <div class="use-grid">
+          <article class="use-item">
+            <img src="https://images.unsplash.com/photo-1527786356703-4b100091cd2c?w=600&q=80" alt="Camping-car sur la route" width="600" height="400" loading="lazy" />
+            <div>
+              <h3>Camping-car &amp; van</h3>
+              <p>Antenne compacte, pose sur le toit ou au sol. Internet pour naviguer, réserver des emplacements et garder le contact en voyage.</p>
+            </div>
+          </article>
+          <article class="use-item">
+            <img src="https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?w=600&q=80" alt="Tente et nature, camping" width="600" height="400" loading="lazy" />
+            <div>
+              <h3>Camping &amp; nature</h3>
+              <p>Connexion en pleine nature sans dépendre du Wi‑Fi du camping. Parfait pour les séjours prolongés hors réseau.</p>
+            </div>
+          </article>
+          <article class="use-item">
+            <img src="https://images.unsplash.com/photo-1564013799919-ab600027ffc6?w=600&q=80" alt="Maison avec jardin" width="600" height="400" loading="lazy" />
+            <div>
+              <h3>Habitation &amp; secondaire</h3>
+              <p>Maison en campagne, grange rénovée ou résidence secondaire : une installation durable sans tranchées ni travaux lourds.</p>
+            </div>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap app-block">
+        <div>
+          <h2>L’application Starlink</h2>
+          <p class="section-sub" style="text-align: left; margin-left: 0; margin-bottom: 1.25rem;">
+            Le site et l’app officiels centralisent tout ce dont vous avez besoin après la commande.
+          </p>
+          <ul class="app-list">
+            <li>Gestion du compte et de l’abonnement</li>
+            <li>Guide d’installation pas à pas avec vérification du champ de vision du ciel</li>
+            <li>Détails techniques, dépannage et mises à jour</li>
+            <li>Statistiques de connexion et support client</li>
+          </ul>
+          <p style="margin-top: 1.25rem; color: var(--muted); font-size: 0.9rem;">
+            Téléchargez l’app sur l’App Store ou Google Play après votre commande sur le site officiel.
+          </p>
+        </div>
+        <figure class="app-visual">
+          <img
+            src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?w=700&q=80"
+            alt="Smartphone affichant une interface moderne"
+            width="700"
+            height="467"
+            loading="lazy"
+          />
+        </figure>
+      </div>
+    </section>
+
+    <section id="installation">
+      <div class="wrap">
+        <h2>Installation simple en 4 étapes</h2>
+        <p class="section-sub">Pas de technicien obligatoire : la plupart des utilisateurs installent eux-mêmes en moins d’une heure.</p>
+        <div class="steps">
+          <div class="step">
+            <h3>Recevoir le kit</h3>
+            <p>Antenne, routeur Wi‑Fi et câbles — tout est inclus dans la boîte.</p>
+          </div>
+          <div class="step">
+            <h3>Choisir l’emplacement</h3>
+            <p>Toit, terrasse ou sol dégagé ; l’app indique les zones sans obstacle vers le ciel.</p>
+          </div>
+          <div class="step">
+            <h3>Brancher &amp; allumer</h3>
+            <p>Alimentation, puis suivi des instructions à l’écran dans l’application.</p>
+          </div>
+          <div class="step">
+            <h3>Se connecter</h3>
+            <p>Le réseau Wi‑Fi Starlink apparaît ; vos appareils sont en ligne.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="cta-band">
+          <h2>Prêt pour internet partout ?</h2>
+          <p>Commandez via le lien officiel Starlink. Vous serez redirigé vers le site Starlink pour finaliser votre commande.</p>
+          <a class="btn btn-primary" href="https://starlink.com/residential?referral=RC-DF-11577924-53788-13" target="_blank" rel="noopener noreferrer">Commander avec mon lien de parrainage</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <p class="disclaimer">
+        Page d’information indépendante. Starlink® est une marque de SpaceX.
+        Les images proviennent de <a href="https://unsplash.com" target="_blank" rel="noopener">Unsplash</a> (illustration).
+        Ce site n’est pas affilié à SpaceX ; les commandes sont effectuées sur starlink.com.
+      </p>
+      <a href="https://starlink.com/residential?referral=RC-DF-11577924-53788-13" target="_blank" rel="noopener noreferrer">starlink.com — offre résidentielle</a>
+    </div>
+  </footer>
+</body>
+</html>
