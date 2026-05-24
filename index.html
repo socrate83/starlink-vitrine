@@ -322,6 +322,72 @@
 
     .app-visual img { width: 100%; display: block; }
 
+    /* Streaming */
+    .streaming {
+      background: var(--surface);
+      border-block: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .streaming-block {
+      display: grid;
+      gap: 2rem;
+      align-items: center;
+    }
+
+    @media (min-width: 900px) {
+      .streaming-block { grid-template-columns: 1fr 1fr; }
+    }
+
+    .streaming-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin: 1.25rem 0;
+    }
+
+    .streaming-tags span {
+      padding: 0.4rem 0.85rem;
+      border-radius: 999px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      background: rgba(61, 156, 245, 0.12);
+      color: var(--accent);
+      border: 1px solid rgba(61, 156, 245, 0.25);
+    }
+
+    .streaming-note {
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-top: 0.75rem;
+    }
+
+    .streaming-screen {
+      aspect-ratio: 16/10;
+      border-radius: var(--radius);
+      background: linear-gradient(145deg, #1a2838, #0d1218);
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      padding: 2rem;
+      box-shadow: inset 0 0 60px rgba(61, 156, 245, 0.08);
+    }
+
+    .streaming-screen svg {
+      width: 3.5rem;
+      height: 3.5rem;
+      color: var(--accent);
+      opacity: 0.9;
+    }
+
+    .streaming-screen p {
+      font-size: 0.9rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
     /* Steps */
     .steps {
       display: grid;
@@ -406,7 +472,7 @@
           <h1>Internet haut débit, même là où la fibre n’existe pas</h1>
           <p class="hero-lead">
             Starlink apporte une connexion fiable en zone rurale, sur la route ou à la maison.
-            Idéal pour le camping-car, le van aménagé et l’habitation — une solution simple pour rester connecté partout.
+            Idéal pour le camping-car, le van aménagé et l’habitation — connexion, streaming et divertissement partout.
           </p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="https://starlink.com/residential?referral=RC-DF-11577924-53788-13" target="_blank" rel="noopener noreferrer">Découvrir Starlink</a>
@@ -443,7 +509,7 @@
               <path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/>
             </svg>
             <h3>Débit adapté au quotidien</h3>
-            <p>Télétravail, streaming, cartes GPS en ligne, visioconférences — une connexion pensée pour un usage moderne.</p>
+            <p>Télétravail, films et séries en streaming, sport en direct, visioconférences — une connexion pensée pour un usage moderne.</p>
           </article>
           <article class="card">
             <svg class="card-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
@@ -452,6 +518,43 @@
             <h3>Tout dans une app</h3>
             <p>Compte, abonnement, suivi de consommation, assistance et réglages d’installation regroupés dans l’application Starlink.</p>
           </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="streaming" id="streaming">
+      <div class="wrap">
+        <div class="streaming-block">
+          <div>
+            <h2>Films, sport et émissions en streaming</h2>
+            <p class="section-sub" style="text-align: left; margin-left: 0; margin-bottom: 0;">
+              Un atout de plus : profitez de vos plateformes préférées comme à la maison, même en van, au camping ou en zone isolée.
+              Le Wi‑Fi Starlink alimente TV connectée, tablette, smartphone ou ordinateur.
+            </p>
+            <div class="streaming-tags" aria-label="Types de contenus">
+              <span>Films</span>
+              <span>Séries &amp; émissions</span>
+              <span>Sport en direct</span>
+              <span>Documentaires</span>
+              <span>Musique</span>
+              <span>Replay TV</span>
+            </div>
+            <p>
+              Netflix, Disney+, Prime Video, YouTube, beIN, Canal+, France TV, Twitch…
+              Tout ce qui fonctionne avec une connexion internet classique est accessible dès que vous êtes installé.
+            </p>
+            <p class="streaming-note">
+              La qualité vidéo dépend du forfait Starlink, du nombre d’appareils connectés et des conditions du réseau sur place.
+            </p>
+          </div>
+          <div class="streaming-screen" role="img" aria-label="Illustration écran de streaming">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
+              <rect x="2" y="4" width="20" height="14" rx="2"/>
+              <path d="M10 9.5l5 2.5-5 2.5V9.5z" fill="currentColor" stroke="none"/>
+              <path d="M8 21h8"/>
+            </svg>
+            <p>Soirée cinéma, match en direct ou série — sans dépendre du Wi‑Fi du camping</p>
+          </div>
         </div>
       </div>
     </section>
@@ -465,7 +568,7 @@
             <img src="https://images.unsplash.com/photo-1527786356703-4b100091cd2c?w=600&q=80" alt="Camping-car sur la route" width="600" height="400" loading="lazy" />
             <div>
               <h3>Camping-car &amp; van</h3>
-              <p>Antenne compacte, pose sur le toit ou au sol. Internet pour naviguer, réserver des emplacements et garder le contact en voyage.</p>
+              <p>Antenne compacte, pose sur le toit ou au sol. Internet pour naviguer, streamer un film le soir et garder le contact en voyage.</p>
             </div>
           </article>
           <article class="use-item">
