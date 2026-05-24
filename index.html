@@ -488,7 +488,73 @@
     }
 
     .cta-band h2 { margin-bottom: 0.75rem; }
-    .cta-band p { color: var(--muted); margin-bottom: 1.5rem; max-width: 28rem; margin-inline: auto; }
+    .cta-band p { color: var(--muted); margin-bottom: 1rem; max-width: 32rem; margin-inline: auto; }
+
+    .cta-band .cta-hint {
+      font-size: 0.95rem;
+      color: var(--text);
+      margin-bottom: 1.5rem;
+      max-width: 32rem;
+      margin-inline: auto;
+    }
+
+    /* FAQ */
+    .faq { padding-bottom: 2rem; }
+
+    .faq-list {
+      max-width: 40rem;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 0.65rem;
+    }
+
+    .faq-item {
+      background: var(--surface);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+      border-radius: var(--radius);
+      overflow: hidden;
+    }
+
+    .faq-item summary {
+      padding: 1rem 1.15rem;
+      font-weight: 600;
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.75rem;
+    }
+
+    .faq-item summary::-webkit-details-marker { display: none; }
+
+    .faq-item summary::after {
+      content: "+";
+      flex-shrink: 0;
+      width: 1.5rem;
+      height: 1.5rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border-radius: 50%;
+      background: rgba(61, 156, 245, 0.15);
+      color: var(--accent);
+      font-size: 1.1rem;
+      font-weight: 400;
+      transition: transform 0.2s;
+    }
+
+    .faq-item[open] summary::after {
+      content: "−";
+    }
+
+    .faq-item p {
+      padding: 0 1.15rem 1rem;
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.55;
+    }
 
     /* Footer */
     footer {
@@ -530,7 +596,7 @@
           </p>
           <div class="hero-cta">
             <a class="btn btn-primary" href="https://starlink.com/residential?referral=RC-DF-11577924-53788-13" target="_blank" rel="noopener noreferrer">Découvrir Starlink</a>
-            <a class="btn btn-outline" href="#installation">Installation facile</a>
+            <a class="btn btn-outline" href="#faq">Questions fréquentes</a>
           </div>
         </div>
         <figure class="hero-visual">
@@ -743,7 +809,69 @@
         <div class="cta-band">
           <h2>Prêt pour internet partout ?</h2>
           <p>Commandez via le lien officiel Starlink. Vous serez redirigé vers le site Starlink pour finaliser votre commande.</p>
-          <a class="btn btn-primary" href="https://starlink.com/residential?referral=RC-DF-11577924-53788-13" target="_blank" rel="noopener noreferrer">Commander avec mon lien de parrainage</a>
+          <p class="cta-hint">
+            <strong>Cliquez sur le bouton ci-dessous</strong> pour accéder au site Starlink : forfaits à jour, disponibilité dans votre zone,
+            détails techniques et processus de commande officiel.
+          </p>
+          <a class="btn btn-primary" href="https://starlink.com/residential?referral=RC-DF-11577924-53788-13" target="_blank" rel="noopener noreferrer">Commander — voir les détails sur starlink.com</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <div class="wrap">
+        <h2>FAQ — questions fréquentes</h2>
+        <p class="section-sub">Cette page vous informe ; la FAQ peut répondre à vos questions avant de passer sur le site officiel.</p>
+        <div class="faq-list">
+          <details class="faq-item">
+            <summary>Cette page est-elle le site officiel Starlink ?</summary>
+            <p>
+              Non. Il s’agit d’une page d’information indépendante. Pour commander, les tarifs exacts et le support officiel,
+              utilisez le bouton ci-dessus : vous serez redirigé vers starlink.com.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Le streaming (Netflix, sport, TV) est-il inclus dans Starlink ?</summary>
+            <p>
+              Non. Starlink fournit uniquement la connexion internet. Vous devez vous abonner séparément sur le site ou l’application
+              de chaque service (Netflix, Canal+, beIN, etc.), puis vous connecter au Wi‑Fi Starlink avec vos identifiants.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Starlink fonctionne-t-il en camping-car ou en van ?</summary>
+            <p>
+              Oui, de nombreux voyageurs l’utilisent sur véhicule ou en habitation mobile, selon le forfait choisi sur le site officiel
+              (résidentiel ou offre mobilité / Roam). Vérifiez les conditions actuelles sur starlink.com avant de commander.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Quels appareils puis-je connecter ?</summary>
+            <p>
+              Tout appareil compatible Wi‑Fi : PC, portable, smartphone, tablette, TV connectée, consoles, etc.
+              Chaque appareil se connecte au réseau Wi‑Fi émis par le routeur du kit Starlink.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>L’installation est-elle compliquée ?</summary>
+            <p>
+              La plupart des utilisateurs installent eux-mêmes le kit en moins d’une heure. L’application Starlink guide le placement
+              de l’antenne et la mise en service. Des tutoriels détaillés sont disponibles sur le site officiel après commande.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Quelle différence avec la 4G ou la fibre ?</summary>
+            <p>
+              La fibre et l’ADSL passent par le réseau câblé ; la 4G/5G par les antennes mobiles. Starlink utilise des satellites :
+              utile quand la fibre n’existe pas ou que la couverture mobile est faible. Le débit et la latence varient selon la zone et le forfait.
+            </p>
+          </details>
+          <details class="faq-item">
+            <summary>Où voir le prix et la disponibilité chez moi ?</summary>
+            <p>
+              Sur le site officiel uniquement. Cliquez sur le bouton « Commander » : vous y trouverez les forfaits, les frais éventuels
+              et la possibilité de service à votre adresse ou pour votre usage.
+            </p>
+          </details>
         </div>
       </div>
     </section>
