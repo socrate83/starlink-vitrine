@@ -388,6 +388,44 @@
       text-align: center;
     }
 
+    /* Devices */
+    .devices-grid {
+      display: grid;
+      gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      margin-top: 1.5rem;
+    }
+
+    @media (min-width: 700px) {
+      .devices-grid { grid-template-columns: repeat(4, 1fr); }
+    }
+
+    .device-card {
+      text-align: center;
+      padding: 1.25rem 0.75rem;
+      background: var(--bg);
+      border-radius: var(--radius);
+      border: 1px solid rgba(255, 255, 255, 0.06);
+    }
+
+    .device-card svg {
+      width: 2.25rem;
+      height: 2.25rem;
+      color: var(--accent);
+      margin-bottom: 0.65rem;
+    }
+
+    .device-card h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .device-card p {
+      font-size: 0.8rem;
+      color: var(--muted);
+      line-height: 1.45;
+    }
+
     /* Steps */
     .steps {
       display: grid;
@@ -546,6 +584,40 @@
             <p class="streaming-note">
               La qualité vidéo dépend du forfait Starlink, du nombre d’appareils connectés et des conditions du réseau sur place.
             </p>
+            <h3 style="margin-top: 1.75rem; font-size: 1.05rem; margin-bottom: 0.25rem;">Tous vos formats, un seul Wi‑Fi</h3>
+            <p style="font-size: 0.9rem; color: var(--muted); margin-bottom: 0;">
+              Pas besoin de changer de réseau : vous vous connectez en Wi‑Fi sur chaque appareil, comme avec une box classique.
+            </p>
+            <div class="devices-grid" aria-label="Appareils compatibles">
+              <article class="device-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/>
+                </svg>
+                <h3>PC &amp; portable</h3>
+                <p>Télétravail, navigateur, streaming HD, jeux en ligne.</p>
+              </article>
+              <article class="device-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="7" y="2" width="10" height="20" rx="2"/><path d="M12 18h.01"/>
+                </svg>
+                <h3>Smartphone</h3>
+                <p>App Starlink, réseaux sociaux, sport et vidéo en mobilité.</p>
+              </article>
+              <article class="device-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="4" y="2" width="16" height="20" rx="2"/><path d="M12 18h.01"/>
+                </svg>
+                <h3>Tablette</h3>
+                <p>Films, liseuses, visio et enfants en voyage.</p>
+              </article>
+              <article class="device-card">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                  <rect x="2" y="5" width="20" height="13" rx="2"/><path d="M8 21h8M12 18v3"/>
+                </svg>
+                <h3>TV connectée</h3>
+                <p>Grand écran, apps TV et consoles branchées sur le routeur.</p>
+              </article>
+            </div>
           </div>
           <div class="streaming-screen" role="img" aria-label="Illustration écran de streaming">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true">
@@ -553,7 +625,7 @@
               <path d="M10 9.5l5 2.5-5 2.5V9.5z" fill="currentColor" stroke="none"/>
               <path d="M8 21h8"/>
             </svg>
-            <p>Soirée cinéma, match en direct ou série — sans dépendre du Wi‑Fi du camping</p>
+            <p>PC, téléphone, tablette ou TV — même réseau Wi‑Fi Starlink, partout</p>
           </div>
         </div>
       </div>
@@ -637,7 +709,7 @@
           </div>
           <div class="step">
             <h3>Se connecter</h3>
-            <p>Le réseau Wi‑Fi Starlink apparaît ; vos appareils sont en ligne.</p>
+            <p>Le réseau Wi‑Fi Starlink apparaît ; connectez PC, smartphone, tablette ou TV.</p>
           </div>
         </div>
       </div>
