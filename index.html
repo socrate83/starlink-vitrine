@@ -4,14 +4,23 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description" content="Internet Starlink en van, camping-car et maison — sans fibre. Installation simple, streaming via vos apps." />
+  <meta name="theme-color" content="#0a0e14" />
   <meta property="og:title" content="Starlink — Internet partout" />
   <meta property="og:description" content="Van, camping, maison : internet satellite même sans fibre. Commande via lien de parrainage." />
   <meta property="og:image" content="https://socrate83.github.io/starlink-vitrine/images/earth.jpg" />
   <meta property="og:url" content="https://socrate83.github.io/starlink-vitrine/" />
+  <meta property="og:type" content="website" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Starlink — Internet en van & zone blanche" />
+  <meta name="twitter:description" content="Van, camping, maison : internet satellite même sans fibre." />
+  <meta name="twitter:image" content="https://socrate83.github.io/starlink-vitrine/images/earth.jpg" />
   <title>Starlink — Internet en van &amp; zone blanche</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🛰️</text></svg>" />
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" />
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  <link rel="preload" as="image" href="images/earth.jpg" />
   <style>
     :root {
       --bg: #0a0e14;
@@ -41,6 +50,21 @@
 
     a { color: var(--accent); text-decoration: none; }
     a:hover { opacity: 0.9; }
+    a:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+    .skip-link {
+      position: absolute;
+      top: -40px;
+      left: 0;
+      background: var(--accent);
+      color: var(--bg);
+      padding: 0.5rem 1rem;
+      border-radius: var(--radius);
+      font-weight: 600;
+      z-index: 999;
+    }
+
+    .skip-link:focus { top: 0; }
 
     .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
 
@@ -57,12 +81,12 @@
       display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     }
 
-    .logo { font-weight: 700; font-size: 1rem; color: var(--text); white-space: nowrap; }
+    .logo { font-weight: 700; font-size: 1rem; color: var(--text); white-space: nowrap; cursor: pointer; }
     .logo span { color: var(--accent); }
 
     nav { display: none; gap: 1.25rem; font-size: 0.88rem; font-weight: 500; }
-    nav a { color: var(--muted); }
-    nav a:hover { color: var(--text); }
+    nav a { color: var(--muted); transition: color 0.2s; }
+    nav a:hover, nav a:focus-visible { color: var(--text); }
 
     @media (min-width: 768px) { nav { display: flex; } .header-cta { display: inline-flex; } }
     .header-cta { display: none; }
@@ -73,6 +97,8 @@
       font-weight: 600; font-size: 0.9rem; border: none; cursor: pointer;
       transition: transform 0.15s, box-shadow 0.2s;
     }
+
+    .btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 
     .btn-primary {
       background: linear-gradient(135deg, #2d7dd2, #3d9cf5);
@@ -226,15 +252,18 @@
 
     .faq-item summary {
       padding: 0.85rem 1rem; font-weight: 600; font-size: 0.9rem;
-      cursor: pointer; list-style: none;
+      cursor: pointer; list-style: none; transition: background 0.2s;
     }
 
+    .faq-item summary:hover { background: rgba(61,156,245,0.1); }
+    .faq-item summary:focus-visible { outline: 2px solid var(--accent); outline-offset: -2px; }
     .faq-item summary::-webkit-details-marker { display: none; }
     .faq-item p { padding: 0 1rem 0.85rem; font-size: 0.85rem; color: var(--muted); }
 
     footer {
       padding: 1.5rem 0 2rem; border-top: 1px solid rgba(255,255,255,0.06);
       text-align: center; font-size: 0.78rem; color: var(--muted); line-height: 1.5;
+      role: contentinfo;
     }
 
     footer p { max-width: 34rem; margin: 0 auto 0.75rem; }
@@ -278,6 +307,7 @@
     }
 
     .share-btn:hover { transform: translateY(-1px); opacity: 0.95; color: #fff; }
+    .share-btn:focus-visible { outline: 2px solid var(--text); outline-offset: 2px; }
 
     .share-btn svg { width: 1.15rem; height: 1.15rem; flex-shrink: 0; }
 
@@ -295,13 +325,19 @@
     .sticky-cta .btn { width: 100%; padding: 0.85rem; font-size: 0.95rem; }
 
     @media (min-width: 768px) { .sticky-cta { display: none; } }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    }
   </style>
 </head>
 <body>
-  <header>
+  <a href="#main" class="skip-link">Aller au contenu principal</a>
+
+  <header role="banner">
     <div class="header-inner">
-      <a href="#" class="logo">Internet <span>partout</span></a>
-      <nav aria-label="Navigation">
+      <button class="logo" aria-label="Retour à l'accueil">Internet <span>partout</span></button>
+      <nav aria-label="Navigation principale">
         <a href="#pour-qui">Pour qui</a>
         <a href="#streaming">Streaming</a>
         <a href="#installation">Installation</a>
@@ -312,7 +348,7 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
     <section class="hero">
       <div class="wrap hero-grid">
         <div>
@@ -320,7 +356,7 @@
           <h1>Internet en van et en zone blanche — sans fibre</h1>
           <p class="hero-lead">
             Starlink = connexion par satellite, comme une box. Idéal camping-car, van et maison isolée.
-            Installation guidée par l’app officielle.
+            Installation guidée par l'app officielle.
           </p>
           <div class="hero-btns">
             <a class="btn btn-primary" href="https://starlink.com/residential?referral=RC-DF-11577924-53788-13" target="_blank" rel="noopener noreferrer">Commander via mon lien de parrainage</a>
@@ -329,7 +365,7 @@
           <p class="btn-hint">Cliquez sur le lien pour obtenir un mois gratuit.</p>
         </div>
         <figure class="hero-img">
-          <img src="images/earth.jpg" alt="La Terre vue depuis l'espace" width="960" height="720" loading="eager" />
+          <img src="images/earth.jpg" alt="La Terre vue depuis l'espace" width="960" height="720" loading="eager" decoding="async" />
         </figure>
       </div>
       <div class="wrap pills" aria-label="Usages principaux">
@@ -342,7 +378,7 @@
     <section id="pour-qui">
       <div class="wrap">
         <h2>Pour qui ?</h2>
-        <p class="sub">Quand la fibre, l’ADSL ou la 4G ne suffisent pas.</p>
+        <p class="sub">Quand la fibre, l'ADSL ou la 4G ne suffisent pas.</p>
         <div class="cards">
           <article class="card">
             <h3>Van &amp; camping-car</h3>
@@ -365,10 +401,10 @@
         <h2>Films, sport, émissions</h2>
         <p class="sub">Le Wi‑Fi Starlink alimente PC, smartphone, tablette et TV — comme une box classique.</p>
         <aside class="notice" role="note">
-          <strong>* Starlink n’inclut pas Netflix, Canal+, beIN, etc.</strong>
+          <strong>* Starlink n'inclut pas Netflix, Canal+, beIN, etc.</strong>
           Vous vous abonnez sur chaque site officiel, puis vous connectez vos appareils au Wi‑Fi Starlink.
         </aside>
-        <div class="tags">
+        <div class="tags" aria-label="Types d'appareils et services compatibles">
           <span>Films &amp; séries</span>
           <span>Sport live</span>
           <span>PC</span>
@@ -382,13 +418,13 @@
     <section id="installation">
       <div class="wrap">
         <h2>Installé en 4 étapes</h2>
-        <p class="sub">En général moins d’1 h, sans technicien. L’app Starlink guide tout (compte, réglages, dépannage).</p>
-        <div class="steps">
-          <div class="step"><h3>Kit reçu</h3><p>Antenne + routeur Wi‑Fi.</p></div>
-          <div class="step"><h3>Emplacement</h3><p>Ciel dégagé, app d’aide.</p></div>
-          <div class="step"><h3>Brancher</h3><p>Alim + instructions.</p></div>
-          <div class="step"><h3>Connecter</h3><p>PC, tel, tablette, TV.</p></div>
-        </div>
+        <p class="sub">En général moins d'1 h, sans technicien. L'app Starlink guide tout (compte, réglages, dépannage).</p>
+        <ol class="steps" aria-label="Étapes d'installation">
+          <li class="step"><h3>Kit reçu</h3><p>Antenne + routeur Wi‑Fi.</p></li>
+          <li class="step"><h3>Emplacement</h3><p>Ciel dégagé, app d'aide.</p></li>
+          <li class="step"><h3>Brancher</h3><p>Alim + instructions.</p></li>
+          <li class="step"><h3>Connecter</h3><p>PC, tel, tablette, TV.</p></li>
+        </ol>
       </div>
     </section>
 
@@ -409,16 +445,16 @@
         <p class="sub">Juste avant la FAQ — envoyez la vitrine, pas le lien Starlink direct.</p>
         <div class="share-box">
           <p class="share-lead">Facebook · WhatsApp · E-mail</p>
-          <div class="share-btns">
+          <div class="share-btns" role="group" aria-label="Options de partage">
             <a id="share-facebook" class="share-btn share-fb" href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Fsocrate83.github.io%2Fstarlink-vitrine%2F" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Facebook">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
               Facebook
             </a>
             <a id="share-whatsapp" class="share-btn share-wa" href="https://wa.me/?text=Starlink%20%E2%80%94%20Internet%20en%20van%2C%20camping-car%20et%20maison%0A%0Ahttps%3A%2F%2Fsocrate83.github.io%2Fstarlink-vitrine%2F" target="_blank" rel="noopener noreferrer" aria-label="Partager sur WhatsApp">
-              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.435 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+              <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.299.223-.596.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.67-.51-.173-.008-.371 0-.57 0-.198 0-.52.075-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.095 3.2 5.076 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421-7.403h-.004a6.963 6.963 0 0 0-6.96 6.961v.001c0 1.928.563 3.81 1.631 5.437l-1.731 6.32 6.47-1.694a6.97 6.97 0 0 0 5.59 2.54h.001c3.837 0 6.961-3.124 6.962-6.961a6.968 6.968 0 0 0-2.043-4.918 6.979 6.979 0 0 0-4.918-2.035c-.001 0-.001 0-.001 0zm11.262-1.012A11.94 11.94 0 0 0 12.051 0C5.495 0 .157 5.338.157 11.894c0 2.096.547 4.142 1.588 5.946L.057 24l6.305-1.654a11.882 11.882 0 0 0 5.683 1.448h.005c6.554 0 11.89-5.338 11.893-11.893a11.821 11.821 0 0 0-3.48-8.413Z"/></svg>
               WhatsApp
             </a>
-            <a id="share-email" class="share-btn share-mail" href="mailto:?subject=Starlink%20%E2%80%94%20Internet%20partout&amp;body=Infos%20Starlink%20(van%2C%20camping%2C%20maison)%20%3A%0Ahttps%3A%2F%2Fsocrate83.github.io%2Fstarlink-vitrine%2F" aria-label="Partager par e-mail">
+            <a id="share-email" class="share-btn share-mail" href="mailto:?subject=Starlink%20%E2%80%94%20Internet%20partout&body=Infos%20Starlink%20(van%2C%20camping%2C%20maison)%20%3A%0Ahttps%3A%2F%2Fsocrate83.github.io%2Fstarlink-vitrine%2F%0A%0A(Pas%20besoin%20d%27aller%20directement%20sur%20starlink.com%20%3A%20tout%20est%20expliqu%C3%A9%20sur%20cette%20vitrine)" aria-label="Partager par e-mail">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 6.48a2 2 0 0 1-2.06 0L2 7"/></svg>
               E-mail
             </a>
@@ -434,7 +470,7 @@
         <div class="faq-list">
           <details class="faq-item">
             <summary>Page officielle Starlink ?</summary>
-            <p>Non — page d’info indépendante. Pour commander, utilisez le bouton « lien de parrainage » sur cette page.</p>
+            <p>Non — page d'info indépendante. Pour commander, utilisez le bouton « lien de parrainage » sur cette page.</p>
           </details>
           <details class="faq-item">
             <summary>Streaming inclus ?</summary>
@@ -457,17 +493,17 @@
     </section>
   </main>
 
-  <footer>
+  <footer role="contentinfo">
     <div class="wrap">
       <p>
         Page indépendante · Starlink® = SpaceX · Photo Terre : NASA / Apollo 17.
-        Streaming cité à titre d’exemple, non inclus.
+        Streaming cité à titre d'exemple, non inclus.
       </p>
       <a href="https://starlink.com/residential?referral=RC-DF-11577924-53788-13" target="_blank" rel="noopener noreferrer">Commander via le lien de parrainage</a>
     </div>
   </footer>
 
-  <div class="sticky-cta" aria-hidden="false">
+  <div class="sticky-cta" aria-label="Appel à l'action fixe">
     <a class="btn btn-primary" href="https://starlink.com/residential?referral=RC-DF-11577924-53788-13" target="_blank" rel="noopener noreferrer">Commander — lien parrainage</a>
   </div>
 
@@ -475,7 +511,7 @@
     (function () {
       var pageUrl = "https://socrate83.github.io/starlink-vitrine/";
       var title = "Starlink — Internet en van, camping-car et maison";
-      var message = title + "\n\nInfos Starlink (van, camping, maison) — lien de cette page :\n" + pageUrl + "\n\n(Pas besoin d’aller directement sur starlink.com : tout est expliqué sur cette vitrine.)";
+      var message = title + "\n\nInfos Starlink (van, camping, maison) — lien de cette page :\n" + pageUrl + "\n\n(Pas besoin d'aller directement sur starlink.com : tout est expliqué sur cette vitrine)";
 
       var fb = document.getElementById("share-facebook");
       var wa = document.getElementById("share-whatsapp");
@@ -490,6 +526,12 @@
       if (em) {
         em.href = "mailto:?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(message);
       }
+
+      // Scroll to top on logo click
+      document.querySelector(".logo").addEventListener("click", function(e) {
+        e.preventDefault();
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      });
     })();
   </script>
 </body>
