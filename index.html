@@ -239,18 +239,29 @@
 
     footer p { max-width: 34rem; margin: 0 auto 0.75rem; }
 
-    /* Share */
-    .share-section { padding: 2rem 0 0; }
-
-    .share-box {
-      text-align: center; padding: 1.5rem 1rem;
-      background: var(--surface); border-radius: var(--radius);
-      border: 1px solid rgba(255,255,255,0.06);
-      max-width: 36rem; margin: 0 auto;
+    /* Share — avant FAQ */
+    .share-section {
+      padding: 2.5rem 0;
+      background: var(--surface);
+      border-block: 1px solid rgba(255, 255, 255, 0.08);
+      scroll-margin-top: 5rem;
     }
 
-    .share-box h2 { font-size: 1.1rem; margin-bottom: 0.35rem; }
-    .share-box > p { font-size: 0.85rem; color: var(--muted); margin-bottom: 1rem; }
+    .share-section > .wrap > h2 {
+      text-align: center;
+      font-size: clamp(1.25rem, 3vw, 1.6rem);
+      margin-bottom: 0.35rem;
+    }
+
+    .share-box {
+      text-align: center; padding: 1.25rem 1rem 1.5rem;
+      background: var(--bg); border-radius: var(--radius);
+      border: 1px solid rgba(61, 156, 245, 0.35);
+      max-width: 40rem; margin: 0 auto;
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    }
+
+    .share-box .share-lead { font-size: 0.9rem; color: var(--muted); margin-bottom: 1.15rem; }
 
     .share-btns {
       display: flex; flex-wrap: wrap; gap: 0.5rem;
@@ -259,9 +270,11 @@
 
     .share-btn {
       display: inline-flex; align-items: center; gap: 0.5rem;
-      padding: 0.65rem 1.1rem; border-radius: 999px;
-      font-weight: 600; font-size: 0.88rem; color: #fff;
+      padding: 0.75rem 1.25rem; border-radius: 999px;
+      font-weight: 600; font-size: 0.95rem; color: #fff;
       border: none; transition: transform 0.15s, opacity 0.15s;
+      min-width: 8.5rem;
+      justify-content: center;
     }
 
     .share-btn:hover { transform: translateY(-1px); opacity: 0.95; color: #fff; }
@@ -390,11 +403,12 @@
       </div>
     </section>
 
-    <section class="share-section" id="partager">
+    <section class="share-section" id="partager" aria-labelledby="partager-titre">
       <div class="wrap">
+        <h2 id="partager-titre">Partager cette page</h2>
+        <p class="sub">Juste avant la FAQ — envoyez la vitrine, pas le lien Starlink direct.</p>
         <div class="share-box">
-          <h2>Envoyer cette page à quelqu’un</h2>
-          <p>Partagez le lien de cette vitrine (pas Starlink direct) — Facebook, WhatsApp ou e-mail.</p>
+          <p class="share-lead">Facebook · WhatsApp · E-mail</p>
           <div class="share-btns">
             <a id="share-facebook" class="share-btn share-fb" href="#" target="_blank" rel="noopener noreferrer" aria-label="Partager sur Facebook">
               <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>
