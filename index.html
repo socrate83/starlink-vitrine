@@ -68,6 +68,22 @@
 
     .wrap { max-width: var(--max); margin: 0 auto; padding: 0 1.25rem; }
 
+    .top-brand {
+      background: #ffffff;
+      color: #0a0e14;
+      text-align: center;
+      padding: 0.7rem 1rem;
+      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+    }
+
+    .top-brand-text {
+      margin: 0;
+      font-weight: 700;
+      font-size: clamp(1rem, 3vw, 1.2rem);
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+    }
+
     header {
       position: sticky; top: 0; z-index: 100;
       background: rgba(10, 14, 20, 0.9);
@@ -334,9 +350,13 @@
 <body>
   <a href="#main" class="skip-link">Aller au contenu principal</a>
 
+  <div class="top-brand" role="presentation">
+    <p class="top-brand-text">INTERNET PARTOUT</p>
+  </div>
+
   <header role="banner">
     <div class="header-inner">
-      <button class="logo" aria-label="Retour à l'accueil">Internet <span>partout</span></button>
+      <button class="logo" aria-label="Retour à l'accueil">INTERNET <span>PARTOUT</span></button>
       <nav aria-label="Navigation principale">
         <a href="#pour-qui">Pour qui</a>
         <a href="#streaming">Streaming</a>
