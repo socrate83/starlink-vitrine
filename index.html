@@ -97,10 +97,7 @@
       display: flex; align-items: center; justify-content: space-between; gap: 1rem;
     }
 
-    .logo { font-weight: 700; font-size: 1rem; color: var(--text); white-space: nowrap; cursor: pointer; }
-    .logo span { color: var(--accent); }
-
-    nav { display: none; gap: 1.25rem; font-size: 0.88rem; font-weight: 500; }
+    nav { display: none; gap: 1.25rem; font-size: 0.88rem; font-weight: 500; margin-left: auto; }
     nav a { color: var(--muted); transition: color 0.2s; }
     nav a:hover, nav a:focus-visible { color: var(--text); }
 
@@ -356,7 +353,6 @@
 
   <header role="banner">
     <div class="header-inner">
-      <button class="logo" aria-label="Retour à l'accueil">INTERNET <span>PARTOUT</span></button>
       <nav aria-label="Navigation principale">
         <a href="#pour-qui">Pour qui</a>
         <a href="#streaming">Streaming</a>
@@ -546,11 +542,6 @@
         em.href = "mailto:?subject=" + encodeURIComponent(title) + "&body=" + encodeURIComponent(message);
       }
 
-      // Scroll to top on logo click
-      document.querySelector(".logo").addEventListener("click", function(e) {
-        e.preventDefault();
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      });
     })();
   </script>
 </body>
